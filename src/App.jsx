@@ -1,22 +1,8 @@
 // import { useEffect, useState } from 'react'
 import Movies from './components/Movies'
-import withResults from './mocks/with-results.json'
+import useMovies from './hooks/useMovies'
 import './App.css'
 
-const useMovies = () => {
-  const movies = withResults.Search || []
-
-  const mappedMovies = movies.map(movie => {
-    return {
-      id: movie.imdbID,
-      title: movie.Title,
-      year: movie.Year,
-      poster: movie.Poster
-    }
-  });
-
-  return { movies: mappedMovies }
-}
 
 function App() {
 
