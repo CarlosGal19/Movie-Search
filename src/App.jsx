@@ -1,24 +1,20 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import Movies from './components/Movies'
+import withResults from './mocks/with-results.json'
 import './App.css'
 
 function App() {
 
-  const [title, setTitle] = useState('');
-  const [movies, setMovies] = useState([]);
+  const movies = withResults.Search || []
 
-  let id = "4287ad07";
-
-  useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=${id}&s=${title}`)
-      .then(response => response.json())
-      .then(data => setMovies(data.Search));
-  }, [title]);
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    setTitle(e.target.previousElementSibling.value);
-  }
+  const mappedMovies = movies.map(movie => {
+    return {
+      id: movie.imdbID,
+      title: movie.Title,
+      year: movie.Year,
+      poster: movie.Poster
+    }
+  });
 
   return (
     <div className='page'>
@@ -27,12 +23,12 @@ function App() {
         <form>
           <input type="text" placeholder='Avengers, Star Wars, Interestellar, ...' />
           {/* The last button of a form, is type submit */}
-          <button onClick={handleClick}>Search</button>
+          <button>Search</button>
         </form>
       </header>
       <main>
         {
-          <Movies movies={movies} />
+          <Movies movies={mappedMovies} />
         }
       </main>
     </div>
