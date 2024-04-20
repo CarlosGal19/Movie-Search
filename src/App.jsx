@@ -1,29 +1,24 @@
-// import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Movies from './components/Movies'
-import withResults from './mocks/with-results.json'
-// import withoutResults from './mocks/no-results.json'
 import './App.css'
 
 function App() {
 
-  const movies = withResults.Search;
+  const [title, setTitle] = useState('');
+  const [movies, setMovies] = useState([]);
 
-  // const [title, setTitle] = useState('Avengers');
+  let id = "4287ad07";
 
-  // let id = "4287ad07";
+  useEffect(() => {
+    fetch(`http://www.omdbapi.com/?apikey=${id}&s=${title}`)
+      .then(response => response.json())
+      .then(data => setMovies(data.Search));
+  }, [title]);
 
-  // useEffect(() => {
-  //   console.log('App mounted');
-  //   fetch(`http://www.omdbapi.com/?apikey=${id}&s=${title}`)
-  //     .then(response => response.json())
-  //     .then(data => console.log(data));
-  // }, [title]);
-
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   console.log('Search button clicked');
-  //   setTitle(e.target.previousElementSibling.value);
-  // }
+  const handleClick = (e) => {
+    e.preventDefault();
+    setTitle(e.target.previousElementSibling.value);
+  }
 
   return (
     <div className='page'>
@@ -32,7 +27,7 @@ function App() {
         <form>
           <input type="text" placeholder='Avengers, Star Wars, Interestellar, ...' />
           {/* The last button of a form, is type submit */}
-          <button>Search</button>
+          <button onClick={handleClick}>Search</button>
         </form>
       </header>
       <main>

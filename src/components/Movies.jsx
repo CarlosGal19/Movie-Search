@@ -1,6 +1,6 @@
 function listOfMovies({movies}) {
     return (
-        <ul>
+        <ul className="movies">
             {
                 movies.map( movie => {
                     return (
