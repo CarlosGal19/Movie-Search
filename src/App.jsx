@@ -3,8 +3,7 @@ import Movies from './components/Movies'
 import withResults from './mocks/with-results.json'
 import './App.css'
 
-function App() {
-
+const useMovies = () => {
   const movies = withResults.Search || []
 
   const mappedMovies = movies.map(movie => {
@@ -15,6 +14,13 @@ function App() {
       poster: movie.Poster
     }
   });
+
+  return { movies: mappedMovies }
+}
+
+function App() {
+
+  const { movies: mappedMovies } = useMovies()
 
   return (
     <div className='page'>
