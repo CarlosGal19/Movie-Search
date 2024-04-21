@@ -1,14 +1,13 @@
-import { useState, useEffect } from 'react';
 import Movies from './components/Movies'
 import useMovies from './hooks/useMovies'
-import './App.css'
-
+import useSearch from './hooks/useSearch'
+import './App.css';
 
 function App() {
 
   const { movies: mappedMovies } = useMovies();
-  const [title, setTitle] = useState('');
-  const [error, setError] = useState(null);
+
+  const {title, setTitle, error} = useSearch();
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -16,17 +15,9 @@ function App() {
   }
 
   const handleChange = (e) => {
-    const newTitle = e.target.value;
-    if(newTitle.startsWith(' ')) return;
     setTitle(e.target.value)
   }
-  useEffect(() => {
-    if(title === ''){
-      setError('Please enter a movie title');
-      return;
-    }
-    setError(null)
-  }, [title]);
+
 
   return (
     <div className='page'>
