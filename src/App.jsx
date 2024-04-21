@@ -6,7 +6,7 @@ import './App.css';
 function App() {
 
   const {title, setTitle, error} = useSearch();
-  const { movies: mappedMovies, getMovies } = useMovies({title});
+  const { movies: mappedMovies, loading, getMovies } = useMovies({title});
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -31,8 +31,9 @@ function App() {
       </header>
       <main>
         {
-          <Movies movies={mappedMovies} />
+          loading ? <p>Loading...</p> : null
         }
+        <Movies movies={mappedMovies} />
       </main>
     </div>
   )
