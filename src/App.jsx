@@ -5,13 +5,12 @@ import './App.css';
 
 function App() {
 
-  const { movies: mappedMovies } = useMovies();
-
   const {title, setTitle, error} = useSearch();
+  const { movies: mappedMovies, getMovies } = useMovies({title});
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    console.log({title})
+    getMovies();
   }
 
   const handleChange = (e) => {
