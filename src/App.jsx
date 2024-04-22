@@ -8,8 +8,8 @@ import './App.css';
 function App() {
 
   const [sort, setSort] = useState(false);
-  const {title, setTitle, error} = useSearch();
-  const { movies: mappedMovies, loading, getMovies } = useMovies({title, sort});
+  const { title, setTitle, error } = useSearch();
+  const { movies: mappedMovies, loading, getMovies } = useMovies({ title, sort });
 
   const debouncedGetMovies = useCallback(
     debounce(title => {
@@ -39,12 +39,12 @@ function App() {
       <header>
         <h1>Movie Search</h1>
         <form className='form' onSubmit={handleSumbit}>
-          <input onChange={handleChange} style={{border: '1px solid transparent', borderColor: error ? 'red' : 'transparent'}} value={title} name='title' type="text" placeholder='Avengers, Star Wars, Interestellar, ...' />
-          <input type="checkbox" onChange={handleSort} checked={sort}/>
+          <input onChange={handleChange} style={{ border: '1px solid transparent', borderColor: error ? 'red' : 'transparent' }} value={title} name='title' type="text" placeholder='Avengers, Star Wars, Interestellar, ...' />
+          <input type="checkbox" onChange={handleSort} checked={sort} />
           {/* The last button of a form, is type submit */}
           <button>Search</button>
         </form>
-        {error && <p style={{color: 'red'}}>{error}</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
       <main>
         {

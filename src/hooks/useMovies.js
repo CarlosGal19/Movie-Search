@@ -10,7 +10,7 @@ export default function useMovies({ title, sort }) {
 
   const getMovies = useMemo(() => {
     return async (title) => {
-      if(previousSearch.current === title) return;
+      if (previousSearch.current === title) return;
       try {
         setLoading(true);
         setError(null);
@@ -27,7 +27,7 @@ export default function useMovies({ title, sort }) {
 
   const sortedMovies = useMemo(() => {
     return sort
-      ? [...movies].sort((a,b) => a.title.localeCompare(b.title))
+      ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
       : movies;
   }, [movies, sort]);
 

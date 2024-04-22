@@ -1,8 +1,8 @@
-function listOfMovies({movies}) {
+function listOfMovies({ movies }) {
     return (
         <ul className="movies">
             {
-                movies.map( movie => {
+                movies.map(movie => {
                     return (
                         <li className="movie" key={movie.id}>
                             <h2>{movie.title}</h2>
@@ -22,9 +22,9 @@ function noMovies() {
     )
 }
 
-export default function Movies({movies}) {
+export default function Movies({ movies }) {
     const hasMovies = movies?.length > 0;
-    return(
-        hasMovies ? listOfMovies({movies}) : noMovies()
+    return (
+        hasMovies ? listOfMovies({ movies }) : noMovies()
     )
 }
