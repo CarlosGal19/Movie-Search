@@ -11,6 +11,7 @@ function App() {
   const { title, setTitle, error } = useSearch();
   const { movies: mappedMovies, loading, getMovies } = useMovies({ title, sort });
 
+  // Debounce the getMovies function to avoid making requests on every key stroke
   const debouncedGetMovies = useCallback(
     debounce(title => {
       console.log('Debounced', title);

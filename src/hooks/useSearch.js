@@ -6,7 +6,9 @@ export default function useSearch() {
     const [error, setError] = useState(null);
     const isFirstRun = useRef(true);
 
+    // Validate the title input
     useEffect(() => {
+        // Skip the first run of the effect
         if (isFirstRun.current) {
             isFirstRun.current = title === '';
             return;
