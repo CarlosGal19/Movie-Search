@@ -12,7 +12,7 @@ function App() {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    getMovies();
+    getMovies(title);
   }
 
   const handleSort = () => {
@@ -22,7 +22,6 @@ function App() {
   const handleChange = (e) => {
     setTitle(e.target.value)
   }
-
 
   return (
     <div className='page'>
