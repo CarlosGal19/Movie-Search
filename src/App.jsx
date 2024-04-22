@@ -20,7 +20,9 @@ function App() {
   }
 
   const handleChange = (e) => {
-    setTitle(e.target.value)
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    getMovies(newTitle);
   }
 
   return (
