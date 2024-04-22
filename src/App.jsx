@@ -1,7 +1,8 @@
 import Movies from './components/Movies'
 import useMovies from './hooks/useMovies'
 import useSearch from './hooks/useSearch'
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import debounce from 'just-debounce-it';
 import './App.css';
 
 function App() {
@@ -9,6 +10,14 @@ function App() {
   const [sort, setSort] = useState(false);
   const {title, setTitle, error} = useSearch();
   const { movies: mappedMovies, loading, getMovies } = useMovies({title, sort});
+
+  const debouncedGetMovies = useCallback(
+    debounce(title => {
+      console.log('Debounced', title);
+      getMovies(title);
+    }, 1000),
+    []
+  );
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -22,7 +31,7 @@ function App() {
   const handleChange = (e) => {
     const newTitle = e.target.value;
     setTitle(newTitle);
-    getMovies(newTitle);
+    debouncedGetMovies(newTitle);
   }
 
   return (
