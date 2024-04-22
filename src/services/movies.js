@@ -3,7 +3,7 @@ const API_KEY = '4287ad07';
 export const searchMovies = async (title) => {
   if (title === '') return null;
   try {
-    const response = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${title}`);
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${title}`);
     const data = await response.json();
 
     const movies = data.Search;
